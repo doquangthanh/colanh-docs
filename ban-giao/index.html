@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<title>Biên bản bàn giao Cỏ Lành</title>
+<style>
+img{max-width:100%}
+
+/* Layout: single document column (max 960px) like a printed handover record; numbered sections because a handover follows a fixed order. */
+:root{
+  --bg:#f5f7f6;--paper:#ffffff;--ink:#1c2924;--muted:#5b6c64;--line:#d9e3dd;
+  --brand:#3a8a6c;--mint-soft:#e6f4ed;
+  --ok:#2f7d58;--ok-soft:#e3f3ea;--part:#8a6110;--part-soft:#fbf1d9;--no:#a23b32;--no-soft:#f8e4e1;
+  --body:"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif;--mono:"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#101714;--paper:#17201c;--ink:#e2ebe6;--muted:#9cb0a6;--line:#2a3731;--brand:#6cc49c;--mint-soft:#1c3128;
+  --ok:#7fd3a8;--ok-soft:#1b3328;--part:#f0cd7a;--part-soft:#352a10;--no:#f0a197;--no-soft:#3a1d1a;color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#101714;--paper:#17201c;--ink:#e2ebe6;--muted:#9cb0a6;--line:#2a3731;--brand:#6cc49c;--mint-soft:#1c3128;
+  --ok:#7fd3a8;--ok-soft:#1b3328;--part:#f0cd7a;--part-soft:#352a10;--no:#f0a197;--no-soft:#3a1d1a;color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font:16px/1.6 var(--body);margin:0}
+.doc{max-width:960px;margin:0 auto;padding-block:36px 72px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));display:grid;gap:44px}
+.head{display:grid;gap:14px;border-bottom:2px solid var(--ink);padding-bottom:24px}
+.eyebrow{font:600 12px/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--brand);margin:0}
+h1{font:700 clamp(28px,4.4vw,40px)/1.15 var(--body);margin:0;text-wrap:balance}
+.meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px 24px;margin:6px 0 0}
+.meta div{display:grid;gap:2px}
+.meta dt{font:600 11px/1.3 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.meta dd{margin:0;font-weight:600}
+section{display:grid;gap:16px;min-width:0}
+h2{font:700 22px/1.3 var(--body);margin:0;display:flex;gap:12px;align-items:baseline;text-wrap:balance}
+h2 .n{font:600 13px/1 var(--mono);color:var(--brand);flex:none}
+h3{font:600 16px/1.4 var(--body);margin:8px 0 0}
+p{margin:0;max-width:72ch}
+.muted{color:var(--muted)}
+.tbl{overflow-x:auto;background:var(--paper);border:1px solid var(--line);border-radius:10px}
+table{border-collapse:collapse;width:100%;font-size:14.5px}
+th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+tr:last-child td{border-bottom:0}
+th{font:600 11.5px/1.4 var(--mono);letter-spacing:.07em;text-transform:uppercase;color:var(--muted);background:var(--mint-soft)}
+td code,p code,li code{font:13px var(--mono);overflow-wrap:anywhere}
+.num{font-variant-numeric:tabular-nums;white-space:nowrap}
+.st{display:inline-block;font-size:12.5px;font-weight:600;padding:2px 9px;border-radius:999px;white-space:nowrap}
+.st.ok{background:var(--ok-soft);color:var(--ok)}
+.st.part{background:var(--part-soft);color:var(--part)}
+.st.no{background:var(--no-soft);color:var(--no)}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px}
+.stat{background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:14px 16px;display:grid;gap:2px}
+.stat b{font:700 26px/1.2 var(--body);font-variant-numeric:tabular-nums}
+.stat span{font-size:13px;color:var(--muted)}
+.shots{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,2.6fr);gap:16px;align-items:start}
+.shots figure{margin:0;display:grid;gap:6px}
+.shots img{display:block;width:100%;height:auto;border:1px solid var(--line);border-radius:8px;background:#fff}
+.shots figcaption{font-size:13px;color:var(--muted)}
+.callout{background:var(--paper);border:1px solid var(--line);border-left:4px solid var(--brand);border-radius:8px;padding:14px 16px;display:grid;gap:6px}
+.callout a{color:var(--brand);font-weight:600}
+ul.plain{margin:0;padding-left:20px;display:grid;gap:6px}
+.check{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.check li{display:grid;grid-template-columns:22px minmax(0,1fr);gap:10px;align-items:start}
+.check li::before{content:"";width:16px;height:16px;margin-top:4px;border:1.5px solid var(--muted);border-radius:3px}
+.sign{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
+.sign div{background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:16px;display:grid;gap:8px;min-height:180px;align-content:start}
+.sign b{font:600 12px/1 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.line{border-bottom:1px dotted var(--muted);height:26px}
+@media (max-width:640px){.shots{grid-template-columns:minmax(0,1fr)}}
+</style>
+</head>
+<body>
+
+<article class="doc">
+  <header class="head">
+    <p class="eyebrow">Biên bản bàn giao sản phẩm</p>
+    <h1>Website thương mại điện tử Cỏ Lành</h1>
+    <p class="muted">Website bán mỹ phẩm thảo mộc cho mẹ và bé, gồm trang bán hàng cho khách, trang quản trị cho nhân viên và hệ thống API phục vụ cả hai.</p>
+    <dl class="meta">
+      <div><dt>Ngày bàn giao</dt><dd>21/11/2026</dd></div>
+      <div><dt>Bên nhận</dt><dd>Công ty TNHH thương mại và sản xuất Cỏ Lành</dd></div>
+      <div><dt>Website</dt><dd>colanh.com</dd></div>
+      <div><dt>Quản trị</dt><dd>admin.colanh.com</dd></div>
+      <div><dt>API</dt><dd>api.colanh.com</dd></div>
+      <div><dt>Thời gian phát triển</dt><dd>26/03/2026 – 13/11/2026</dd></div>
+    </dl>
+  </header>
+
+  <section>
+    <h2><span class="n">01</span>Tóm tắt</h2>
+    <p>Hệ thống đang chạy thật tại colanh.com. Khách xem sản phẩm, chọn phân loại, đặt hàng (có hoặc không cần tài khoản), áp mã giảm giá, mua kèm deal và tra cứu đơn. Nhân viên quản lý đơn hàng, sản phẩm, danh mục, khuyến mãi, banner, bộ sưu tập và bài viết có chấm điểm SEO. Mỗi đơn mới được báo qua email chủ shop.</p>
+    <div class="shots">
+      <figure><img src="img/sf-01-home.jpg" alt="Trang chủ colanh.com trên điện thoại"><figcaption>Trang chủ trên điện thoại</figcaption></figure>
+      <figure><img src="img/ad-02-dashboard.jpg" alt="Dashboard trang quản trị"><figcaption>Dashboard quản trị</figcaption></figure>
+    </div>
+  </section>
+
+  <section>
+    <h2><span class="n">02</span>Số liệu tại thời điểm bàn giao</h2>
+    <div class="stats">
+      <div class="stat"><b>72</b><span>sản phẩm</span></div>
+      <div class="stat"><b>13</b><span>danh mục (5 cha, 8 con)</span></div>
+      <div class="stat"><b>9</b><span>bài viết đã đăng</span></div>
+      <div class="stat"><b>3</b><span>banner (2 trang chủ, 1 uy tín)</span></div>
+      <div class="stat"><b>109</b><span>đường dẫn API</span></div>
+      <div class="stat"><b>267</b><span>lần commit mã nguồn</span></div>
+    </div>
+    <p class="muted">Số liệu sản phẩm, danh mục, bài viết, banner đọc từ trang quản trị ngày 21/11/2026. Số API và commit đếm từ mã nguồn.</p>
+  </section>
+
+  <section>
+    <h2><span class="n">03</span>Phạm vi chức năng đã bàn giao</h2>
+    <h3>Website bán hàng (colanh.com)</h3>
+    <div class="tbl"><table>
+      <thead><tr><th>Chức năng</th><th>Mô tả</th><th>Trạng thái</th></tr></thead>
+      <tbody>
+        <tr><td>Trang chủ</td><td>Banner trượt, Combo nổi bật (3 ô), Sản phẩm nổi bật, Sale, Mới nhất, Bán chạy, banner uy tín</td><td><span class="st ok">Hoàn thành</span></td></tr>
+        <tr><td>Danh sách sản phẩm</td><td>Lọc danh mục 2 cấp, sắp xếp 4 kiểu, tìm kiếm</td><td><span class="st ok">Hoàn thành</span></td></tr>
+        <tr><td>Chi tiết sản phẩm</td><td>Nhiều ảnh, phân loại có giá và tồn kho riêng, bảng chọn phân loại trên mobile</td><td><span class="st ok">Hoàn thành</span></td></tr>
+        <tr><td>Giỏ hàng và đặt hàng</td><td>Đặt hàng không cần tài khoản, địa chỉ 3 cấp, mã giảm giá, mua kèm deal, phí ship 15.000 ₫ / miễn phí từ 199.000 ₫</td><td><span class="st ok">Hoàn thành</span></td></tr>
+        <tr><td>Thanh toán COD</td><td>Thanh toán khi nhận hàng</td><td><span class="st ok">Hoàn thành</span></td></tr>
+        <tr><td>Tài khoản khách</td><td>Đăng ký, đăng nhập, Google Sign-In, quên mật khẩu, hồ sơ, sổ địa chỉ, lịch sử đơn, tự hủy đơn</td><td><span class="st ok">Hoàn thành</span></td></tr>
+        <tr><td>Tra cứu đơn</td><td>Theo mã đơn, số điện thoại hoặc email</td><td><span class="st ok">Hoàn thành</span></td></tr>
+        <tr><td>Bài viết</td><td>Danh sách, bài chi tiết có mục lục, bài liên quan, bài xem nhiều, dữ liệu cấu trúc cho Google</td><td><span class="st ok">Hoàn thành</span></td></tr>
+        <tr><td>SEO kỹ thuật</td><td>robots.txt, sitemap, thẻ meta và Open Graph trang chủ, chặn index trang thanh toán và tài khoản</td><td><span class="st ok">Hoàn thành</span></td></tr>
+      </tbody>
+    </table></div>
+
+    <h3>Trang quản trị (admin.colanh.com)</h3>
+    <div class="tbl"><table>
+      <thead><tr><th>Chức năng</th><th>Mô tả</th><th>Trạng thái</th></tr></thead>
+      <tbody>
+        <tr><td>Đăng nhập và phân quyền</td><td>3 vai trò nhân viên: admin, editor, supporter</td><td><span class="st ok">Hoàn thành</span></td></tr>
+        <tr><td>Dashboard</td><td>Doanh thu, số đơn, khách hàng, tỷ lệ hủy, biểu đồ theo ngày/tháng, đơn gần đây</td><td><span class="st ok">Hoàn thành</span></td></tr>
+        <tr><td>Đơn hàng</td><td>Lọc, tìm kiếm, cập nhật 6 trạng thái, lịch sử trạng thái, xuất hóa đơn in/PDF</td><td><span class="st ok">Hoàn thành</span></td></tr>
+        <tr><td>Khách hàng</td><td>Tra cứu, số đơn, tổng chi tiêu (chỉ xem)</td><td><span class="st ok">Hoàn thành</span></td></tr>
+        <tr><td>Sản phẩm</td><td>Thêm/sửa, ẩn/hiện, nổi bật, nhiều ảnh, phân loại, giá gốc, tồn kho</td><td><span class="st ok">Hoàn thành</span></td></tr>
+        <tr><td>Danh mục</td><td>Cây 2 cấp, kéo thả sắp xếp</td><td><span class="st ok">Hoàn thành</span></td></tr>
+        <tr><td>Khuyến mãi</td><td>Mã % hoặc số tiền, đơn tối thiểu, giảm tối đa, giới hạn lượt, tự động áp sale, gán hàng loạt</td><td><span class="st ok">Hoàn thành</span></td></tr>
+        <tr><td>Mua kèm deal sốc</td><td>Điều kiện giỏ, đơn tối thiểu, ưu đãi theo sản phẩm hoặc danh mục</td><td><span class="st ok">Hoàn thành</span></td></tr>
+        <tr><td>Bộ sưu tập, Banner</td><td>Khối Combo nổi bật, banner trang chủ, banner uy tín</td><td><span class="st ok">Hoàn thành</span></td></tr>
+        <tr><td>Bài viết</td><td>Soạn thảo, nháp/đăng/lưu trữ, bài liên quan, chấm điểm SEO và khả năng đọc, xem trước Google và mạng xã hội, trang Về Cỏ Lành</td><td><span class="st ok">Hoàn thành</span></td></tr>
+      </tbody>
+    </table></div>
+  </section>
+
+  <section>
+    <h2><span class="n">04</span>Hạ tầng và công nghệ</h2>
+    <div class="tbl"><table>
+      <thead><tr><th>Thành phần</th><th>Công nghệ</th><th>Nơi chạy</th><th>Cách cập nhật</th></tr></thead>
+      <tbody>
+        <tr><td>Website bán hàng</td><td>Next.js 16, React 19, Tailwind CSS 4</td><td>Vercel (Singapore); bản dự phòng trên Netlify</td><td>Tự động khi đẩy code lên nhánh <code>main</code></td></tr>
+        <tr><td>Trang quản trị</td><td>Vite 8, React 19, Ant Design 6</td><td>Vercel</td><td>Tự động khi đẩy code lên nhánh <code>main</code></td></tr>
+        <tr><td>API</td><td>PHP 8.3, không dùng framework</td><td>Hosting cPanel</td><td>Nén và tải lên thủ công</td></tr>
+        <tr><td>Cơ sở dữ liệu</td><td>MySQL 8.4 (tương thích MariaDB), 12 bản cập nhật cấu trúc</td><td>Hosting cPanel</td><td>Chạy file SQL thủ công qua phpMyAdmin</td></tr>
+        <tr><td>Thông báo đơn</td><td>Email SMTP/SendGrid</td><td>Dịch vụ ngoài</td><td>Cấu hình trong file <code>.env</code> của API</td></tr>
+      </tbody>
+    </table></div>
+  </section>
+
+  <section>
+    <h2><span class="n">05</span>Tài khoản và quyền truy cập cần chuyển giao</h2>
+    <p>Mật khẩu và khóa bí mật không ghi trong biên bản này. Hai bên trao đổi trực tiếp và bên nhận đổi mật khẩu ngay sau khi nhận.</p>
+    <div class="tbl"><table>
+      <thead><tr><th>Hệ thống</th><th>Dùng để</th><th>Việc cần làm khi nhận</th></tr></thead>
+      <tbody>
+        <tr><td>Tài khoản admin trên admin.colanh.com</td><td>Quản lý cửa hàng</td><td>Đổi mật khẩu; tạo tài khoản riêng cho từng nhân viên theo vai trò</td></tr>
+        <tr><td>Tên miền colanh.com (DNS)</td><td>Trỏ website, admin, API</td><td>Xác nhận chủ sở hữu và ngày gia hạn</td></tr>
+        <tr><td>Hosting cPanel</td><td>Chạy API và cơ sở dữ liệu</td><td>Đổi mật khẩu cPanel và MySQL; bật sao lưu định kỳ</td></tr>
+        <tr><td>Vercel</td><td>Chạy website và trang quản trị</td><td>Chuyển project sang tài khoản của Cỏ Lành hoặc thêm thành viên</td></tr>
+        <tr><td>Netlify</td><td>Bản dự phòng của website</td><td>Quyết định giữ hay bỏ</td></tr>
+        <tr><td>GitHub (kho mã nguồn)</td><td>Lưu mã và tự động deploy</td><td>Chuyển quyền sở hữu repo; cập nhật <code>VERCEL_TOKEN</code></td></tr>
+        <tr><td>Google Cloud (OAuth)</td><td>Đăng nhập bằng Google</td><td>Chuyển project hoặc thêm chủ sở hữu</td></tr>
+        <tr><td>SMTP / SendGrid</td><td>Email quên mật khẩu, email báo đơn</td><td>Đổi mật khẩu ứng dụng</td></tr>
+      </tbody>
+    </table></div>
+  </section>
+
+  <section>
+    <h2><span class="n">06</span>Tài liệu kèm theo</h2>
+    <div class="callout">
+      <p><b>Hướng dẫn sử dụng</b>: từng màn hình của website và trang quản trị, có các bước thao tác và 53 ảnh chụp thật.</p>
+      <p><a href="../huong-dan/">Mở Hướng dẫn sử dụng Cỏ Lành</a></p>
+    </div>
+  </section>
+
+  <section>
+    <h2><span class="n">07</span>Danh mục nghiệm thu</h2>
+    <p class="muted">Bên nhận kiểm tra từng mục trên môi trường thật trước khi ký.</p>
+    <ul class="check">
+      <li>Mở colanh.com trên điện thoại và máy tính, trang chủ hiển thị đủ banner, combo, sản phẩm</li>
+      <li>Lọc danh mục, sắp xếp, mở chi tiết sản phẩm, chọn phân loại và thêm vào giỏ</li>
+      <li>Đặt một đơn COD thử với địa chỉ thật; nhận thông báo Email chủ shop</li>
+      <li>Áp một mã giảm giá thử; kiểm tra phí ship dưới và trên 199.000 ₫</li>
+      <li>Tra cứu đơn vừa đặt bằng mã đơn và số điện thoại</li>
+      <li>Đăng ký tài khoản khách, đăng nhập, dùng quên mật khẩu, hủy đơn thử</li>
+      <li>Đăng nhập admin, chuyển đơn thử qua các trạng thái, xuất hóa đơn PDF</li>
+      <li>Thêm một sản phẩm có 2 phân loại và ảnh; ẩn rồi hiện lại</li>
+      <li>Sửa banner, bộ sưu tập; kiểm tra thay đổi trên trang chủ</li>
+      <li>Viết và đăng một bài viết; kiểm tra mục lục trên website</li>
+      <li>Nhận đủ quyền truy cập ở mục 05 và đổi mật khẩu</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2><span class="n">08</span>Xác nhận bàn giao</h2>
+    <div class="sign">
+      <div><b>Bên giao</b><span class="muted">Họ tên, chữ ký, ngày</span><div class="line"></div><div class="line"></div></div>
+      <div><b>Bên nhận · Cỏ Lành</b><span class="muted">Họ tên, chữ ký, ngày</span><div class="line"></div><div class="line"></div></div>
+    </div>
+  </section>
+</article>
+
+</body>
+</html>

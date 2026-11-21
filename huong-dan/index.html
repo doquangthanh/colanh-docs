@@ -1,0 +1,657 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<title>Hướng dẫn sử dụng Cỏ Lành</title>
+<style>
+img{max-width:100%}
+
+/* Layout: sticky table of contents on the left, screens stacked on the right; one column under 900px. */
+:root{
+  --bg:#f6f8f6;--surface:#ffffff;--ink:#1d2a24;--muted:#5d6e66;--line:#dbe5df;
+  --brand:#3a8a6c;--mint:#55be8c;--mint-soft:#e7f5ee;--warn-soft:#fff6e0;--warn-ink:#7a5a12;
+  --display:"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif;--body:"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif;--mono:"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#111815;--surface:#18211d;--ink:#e3ece7;--muted:#9fb2a8;--line:#2a3832;
+  --brand:#6cc49c;--mint:#55be8c;--mint-soft:#1d3329;--warn-soft:#33290f;--warn-ink:#f1d48a;color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#111815;--surface:#18211d;--ink:#e3ece7;--muted:#9fb2a8;--line:#2a3832;
+  --brand:#6cc49c;--mint:#55be8c;--mint-soft:#1d3329;--warn-soft:#33290f;--warn-ink:#f1d48a;color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font:16px/1.6 var(--body);margin:0}
+.wrap{max-width:1240px;margin:0 auto;padding-block:32px 64px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));display:grid;grid-template-columns:250px minmax(0,1fr);gap:40px}
+.cover{grid-column:1/-1;display:grid;gap:12px;border-bottom:1px solid var(--line);padding-bottom:28px}
+.eyebrow{font:600 12px/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--brand);margin:0}
+h1{font:700 clamp(28px,4vw,42px)/1.15 var(--display);margin:0;text-wrap:balance}
+.lede{max-width:68ch;color:var(--muted);margin:0}
+.facts{display:flex;flex-wrap:wrap;gap:8px 20px;font-size:14px;color:var(--muted);margin:4px 0 0;padding:0;list-style:none}
+.facts b{color:var(--ink);font-weight:600}
+nav.toc{position:sticky;top:calc(env(safe-area-inset-top,0px) + 16px);align-self:start;max-height:calc(100vh - 32px);overflow:auto;font-size:14px}
+.toc-group+.toc-group{margin-top:20px}
+.toc-label{font:600 11px/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin:0 0 8px}
+.toc ol{list-style:none;margin:0;padding:0;display:grid;gap:2px}
+.toc a{display:flex;gap:10px;padding:6px 8px;border-radius:6px;color:var(--ink);text-decoration:none}
+.toc a span{font:500 11px/1.9 var(--mono);color:var(--muted);flex:none}
+.toc a:hover,.toc a:focus-visible{background:var(--mint-soft);outline:none}
+main{min-width:0;display:grid;gap:56px}
+.part-title{display:grid;gap:6px;border-left:4px solid var(--mint);padding-left:14px}
+.part-title h2{font:700 26px/1.2 var(--display);margin:0}
+.part-title p{margin:0;color:var(--muted)}
+.screen{display:grid;gap:14px;scroll-margin-top:16px}
+.screen-head{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 12px}
+.num{font:600 12px/1 var(--mono);color:#fff;background:var(--brand);padding:5px 7px;border-radius:4px}
+.screen-head h3{font:700 21px/1.3 var(--display);margin:0;text-wrap:balance}
+.url{font:13px/1.4 var(--mono);color:var(--muted);overflow-wrap:anywhere}
+.purpose{margin:0;max-width:72ch}
+.screen-body{display:grid;gap:24px;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:20px}
+.screen-body.phone{grid-template-columns:minmax(0,1fr) minmax(0,1.15fr)}
+.screen-body.wide{grid-template-columns:minmax(0,1fr)}
+.text{min-width:0}
+h4{font:600 12px/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--brand);margin:0 0 10px}
+.steps{margin:0;padding:0;list-style:none;counter-reset:s;display:grid;gap:10px}
+.steps li{counter-increment:s;display:grid;grid-template-columns:28px minmax(0,1fr);gap:8px}
+.steps li::before{content:counter(s);font:600 13px/26px var(--mono);text-align:center;width:26px;height:26px;border-radius:50%;background:var(--mint-soft);color:var(--brand)}
+.note{margin-top:18px;background:var(--warn-soft);color:var(--warn-ink);border-radius:8px;padding:12px 14px}
+.note h4{color:var(--warn-ink)}
+.note ul{margin:0;padding-left:18px;display:grid;gap:6px}
+.gallery{display:grid;gap:16px;align-content:start}
+.gallery.phone{grid-template-columns:repeat(auto-fill,minmax(160px,1fr))}
+.gallery.wide{grid-template-columns:repeat(auto-fill,minmax(min(100%,420px),1fr))}
+.shot{margin:0;display:grid;gap:8px}
+.shot img{display:block;width:100%;height:auto;border:1px solid var(--line);background:#fff}
+.shot.phone img{border-radius:18px;border-width:5px;border-color:#22302a}
+.shot.wide img{border-radius:8px}
+.shot figcaption{font-size:13px;color:var(--muted)}
+.appendix{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:20px;display:grid;gap:16px}
+.tbl{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:14px}
+th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font:600 12px/1.4 var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.pill{display:inline-block;font-size:12px;padding:2px 8px;border-radius:999px;background:var(--mint-soft);color:var(--brand);white-space:nowrap}
+@media (max-width:900px){.wrap{grid-template-columns:minmax(0,1fr)}nav.toc{position:static;max-height:none}.screen-body.phone{grid-template-columns:minmax(0,1fr)}}
+@media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="cover">
+    <p class="eyebrow">Tài liệu vận hành · Cỏ Lành</p>
+    <h1>Hướng dẫn sử dụng website và trang quản trị</h1>
+    <p class="lede">Hướng dẫn từng màn hình cho khách mua hàng trên colanh.com và cho nhân viên quản lý cửa hàng trên admin.colanh.com. Mỗi màn hình gồm đường dẫn, mục đích, các bước thao tác, lưu ý và ảnh chụp thật từ hệ thống.</p>
+    <ul class="facts">
+      <li>Website: <b>colanh.com</b></li>
+      <li>Quản trị: <b>admin.colanh.com</b></li>
+      <li>Ảnh chụp: <b>21/11/2026</b></li>
+      <li><b>20</b> màn hình · <b>53</b> ảnh</li>
+    </ul>
+  </header>
+  <nav class="toc" aria-label="Mục lục">
+    
+      <div class="toc-group"><p class="toc-label">Phần A · Khách hàng</p><ol>
+        <li><a href="#kh-trang-chu"><span>KH·01</span>Trang chủ</a></li><li><a href="#kh-menu"><span>KH·02</span>Menu và tìm kiếm</a></li><li><a href="#kh-san-pham"><span>KH·03</span>Danh sách sản phẩm</a></li><li><a href="#kh-chi-tiet"><span>KH·04</span>Chi tiết sản phẩm và chọn phân loại</a></li><li><a href="#kh-thanh-toan"><span>KH·05</span>Giỏ hàng và đặt hàng</a></li><li><a href="#kh-tra-cuu"><span>KH·06</span>Tra cứu đơn hàng</a></li><li><a href="#kh-tai-khoan"><span>KH·07</span>Đăng ký, đăng nhập, quên mật khẩu</a></li><li><a href="#kh-blog"><span>KH·08</span>Bài viết (Cẩm nang làm đẹp)</a></li><li><a href="#kh-chan-trang"><span>KH·09</span>Chính sách và liên hệ</a></li>
+      </ol></div>
+    
+      <div class="toc-group"><p class="toc-label">Phần B · Quản trị</p><ol>
+        <li><a href="#qt-dang-nhap"><span>QT·01</span>Đăng nhập trang quản trị</a></li><li><a href="#qt-dashboard"><span>QT·02</span>Dashboard (Tổng quan)</a></li><li><a href="#qt-don-hang"><span>QT·03</span>Đơn hàng</a></li><li><a href="#qt-khach-hang"><span>QT·04</span>Khách hàng</a></li><li><a href="#qt-san-pham"><span>QT·05</span>Sản phẩm</a></li><li><a href="#qt-danh-muc"><span>QT·06</span>Danh mục</a></li><li><a href="#qt-khuyen-mai"><span>QT·07</span>Khuyến mãi (mã giảm giá và sale)</a></li><li><a href="#qt-deal"><span>QT·08</span>Mua kèm deal sốc</a></li><li><a href="#qt-bo-suu-tap"><span>QT·09</span>Bộ sưu tập (Combo nổi bật)</a></li><li><a href="#qt-banner"><span>QT·10</span>Banner</a></li><li><a href="#qt-bai-viet"><span>QT·11</span>Bài viết và SEO</a></li>
+      </ol></div>
+    <div class="toc-group"><p class="toc-label">Phụ lục</p><ol><li><a href="#phu-luc"><span>PL</span>Trạng thái đơn, phí ship</a></li></ol></div>
+  </nav>
+  <main>
+    <div class="part-title"><p class="eyebrow">Phần A</p><h2>Website bán hàng (khách hàng)</h2><p>Ảnh chụp trên điện thoại, vì phần lớn khách mua bằng di động. Trên máy tính bố cục rộng hơn nhưng thao tác giống nhau.</p></div>
+    
+    <section class="screen" id="kh-trang-chu">
+      <header class="screen-head">
+        <span class="num">KH·01</span>
+        <h3>Trang chủ</h3>
+        <code class="url">colanh.com</code>
+      </header>
+      <p class="purpose">Điểm vào chính của khách. Giới thiệu banner khuyến mãi, combo nổi bật và các nhóm sản phẩm.</p>
+      <div class="screen-body phone">
+        <div class="text">
+          <h4>Các bước</h4>
+          <ol class="steps"><li><span>Mở <b>colanh.com</b> trên điện thoại hoặc máy tính.</span></li><li><span>Vuốt banner đầu trang để xem chương trình đang chạy. Bấm banner để vào thẳng sản phẩm gắn với banner.</span></li><li><span>Khối <b>Combo nổi bật</b> (bộ sưu tập) gồm 3 ô. Bấm một ô để mở danh mục hoặc sản phẩm tương ứng.</span></li><li><span>Kéo xuống để xem <b>Sản phẩm nổi bật</b>, <b>Sản phẩm sale</b>, <b>Mới nhất</b>, <b>Bán chạy nhất</b>. Bấm <b>Xem tất cả</b> để mở danh sách đầy đủ.</span></li><li><span>Bấm <b>Thêm vào giỏ</b> ngay trên thẻ sản phẩm để thêm nhanh. Nếu sản phẩm có nhiều phân loại, hệ thống mở bảng chọn phân loại.</span></li></ol>
+          <div class="note"><h4>Lưu ý</h4><ul><li>Thanh điều hướng dưới cùng (mobile): Trang chủ · Sản phẩm · Giỏ hàng · Tài khoản · Liên hệ. Số đỏ trên biểu tượng giỏ là số sản phẩm đang có trong giỏ.</li></ul></div>
+        </div>
+        <div class="gallery phone">
+        <figure class="shot phone">
+          <img src="img/sf-01-home.jpg" alt="Banner và Combo nổi bật" loading="lazy">
+          <figcaption>Banner và Combo nổi bật</figcaption>
+        </figure>
+        <figure class="shot phone">
+          <img src="img/sf-02-home-featured.jpg" alt="Sản phẩm nổi bật, nhãn SALE -%" loading="lazy">
+          <figcaption>Sản phẩm nổi bật, nhãn SALE -%</figcaption>
+        </figure>
+        <figure class="shot phone">
+          <img src="img/sf-03-home-new.jpg" alt="Mới nhất và Bán chạy nhất" loading="lazy">
+          <figcaption>Mới nhất và Bán chạy nhất</figcaption>
+        </figure></div>
+      </div>
+    </section>
+    <section class="screen" id="kh-menu">
+      <header class="screen-head">
+        <span class="num">KH·02</span>
+        <h3>Menu và tìm kiếm</h3>
+        <code class="url">Nút ☰ góc trái trên</code>
+      </header>
+      <p class="purpose">Truy cập nhanh mọi danh mục, tìm sản phẩm, đăng nhập và tra cứu đơn.</p>
+      <div class="screen-body phone">
+        <div class="text">
+          <h4>Các bước</h4>
+          <ol class="steps"><li><span>Bấm biểu tượng <b>☰</b> ở góc trái trên.</span></li><li><span>Gõ tên sản phẩm hoặc danh mục vào ô <b>Tìm sản phẩm và danh mục</b>.</span></li><li><span>Bấm <b>HOT SALE</b> để xem các sản phẩm đang giảm giá.</span></li><li><span>Trong mục <b>Sản phẩm</b>, bấm tên danh mục để mở. Danh mục có mũi tên › chứa danh mục con.</span></li><li><span>Các liên kết phía dưới: <b>Về Cỏ Lành</b>, <b>Bài viết</b>, <b>Hướng dẫn</b>, <b>Tra cứu đơn</b>.</span></li></ol>
+          
+        </div>
+        <div class="gallery phone">
+        <figure class="shot phone">
+          <img src="img/sf-04-menu.jpg" alt="Menu mở từ góc trái" loading="lazy">
+          <figcaption>Menu mở từ góc trái</figcaption>
+        </figure></div>
+      </div>
+    </section>
+    <section class="screen" id="kh-san-pham">
+      <header class="screen-head">
+        <span class="num">KH·03</span>
+        <h3>Danh sách sản phẩm</h3>
+        <code class="url">colanh.com/shop</code>
+      </header>
+      <p class="purpose">Xem toàn bộ sản phẩm, lọc theo danh mục và sắp xếp.</p>
+      <div class="screen-body phone">
+        <div class="text">
+          <h4>Các bước</h4>
+          <ol class="steps"><li><span>Bấm <b>Sản phẩm</b> ở thanh dưới, hoặc mở <b>/shop</b>.</span></li><li><span>Chọn chip danh mục ở đầu trang (Tất cả, Chăm sóc da, Da mặt, …). Trang sẽ hiển thị số sản phẩm của danh mục đó.</span></li><li><span>Bấm ô <b>Sắp xếp</b> rồi chọn: Mới nhất, Bán chạy, Giá thấp đến cao, Giá cao đến thấp.</span></li><li><span>Bấm biểu tượng kính lúp để tìm trong danh mục đang xem.</span></li><li><span>Bấm ảnh hoặc tên sản phẩm để mở trang chi tiết.</span></li></ol>
+          <div class="note"><h4>Lưu ý</h4><ul><li>Giá đỏ là giá bán; giá gạch ngang là giá gốc. Nhãn SALE -x% tự tính từ hai giá này.</li></ul></div>
+        </div>
+        <div class="gallery phone">
+        <figure class="shot phone">
+          <img src="img/sf-05-shop.jpg" alt="Tất cả sản phẩm, nhóm theo danh mục" loading="lazy">
+          <figcaption>Tất cả sản phẩm, nhóm theo danh mục</figcaption>
+        </figure>
+        <figure class="shot phone">
+          <img src="img/sf-06-shop-category.jpg" alt="Lọc theo Chăm sóc da (15 sản phẩm)" loading="lazy">
+          <figcaption>Lọc theo Chăm sóc da (15 sản phẩm)</figcaption>
+        </figure>
+        <figure class="shot phone">
+          <img src="img/sf-07-sort.jpg" alt="Bảng chọn Sắp xếp" loading="lazy">
+          <figcaption>Bảng chọn Sắp xếp</figcaption>
+        </figure></div>
+      </div>
+    </section>
+    <section class="screen" id="kh-chi-tiet">
+      <header class="screen-head">
+        <span class="num">KH·04</span>
+        <h3>Chi tiết sản phẩm và chọn phân loại</h3>
+        <code class="url">colanh.com/product/&lt;tên-sản-phẩm&gt;</code>
+      </header>
+      <p class="purpose">Xem ảnh, giá, công dụng, thông tin; chọn phân loại và số lượng rồi thêm vào giỏ hoặc mua ngay.</p>
+      <div class="screen-body phone">
+        <div class="text">
+          <h4>Các bước</h4>
+          <ol class="steps"><li><span>Vuốt hoặc bấm mũi tên trên ảnh để xem các ảnh khác; bấm ảnh nhỏ bên dưới để chuyển nhanh.</span></li><li><span>Đọc <b>Công dụng</b> và tab <b>Thông tin</b> (khối lượng, hạn sử dụng, thành phần, cách dùng).</span></li><li><span>Với sản phẩm nhiều phân loại, giá hiển thị dạng khoảng (ví dụ 128.000 ₫ – 268.000 ₫). Bấm thanh <b>Phân loại: Chọn phân loại</b> ở cuối màn hình.</span></li><li><span>Trong bảng <b>Chọn phân loại</b>: bấm phân loại mong muốn, chỉnh <b>Số lượng</b> bằng nút − / +, rồi bấm <b>Xong</b>. Nút Xong hiện luôn giá của lựa chọn.</span></li><li><span>Bấm <b>Thêm vào giỏ hàng</b> để tiếp tục mua, hoặc <b>Mua ngay</b> để sang thanh toán.</span></li></ol>
+          <div class="note"><h4>Lưu ý</h4><ul><li>Khi đã thêm, biểu tượng giỏ hàng ở góc phải trên và ở thanh dưới hiện số lượng.</li></ul></div>
+        </div>
+        <div class="gallery phone">
+        <figure class="shot phone">
+          <img src="img/sf-08-pdp.jpg" alt="Ảnh sản phẩm và thanh mua hàng" loading="lazy">
+          <figcaption>Ảnh sản phẩm và thanh mua hàng</figcaption>
+        </figure>
+        <figure class="shot phone">
+          <img src="img/sf-09-pdp-info.jpg" alt="Công dụng và Thông tin" loading="lazy">
+          <figcaption>Công dụng và Thông tin</figcaption>
+        </figure>
+        <figure class="shot phone">
+          <img src="img/sf-10-variant-sheet.jpg" alt="Bảng Chọn phân loại" loading="lazy">
+          <figcaption>Bảng Chọn phân loại</figcaption>
+        </figure>
+        <figure class="shot phone">
+          <img src="img/sf-11-variant-selected.jpg" alt="Đã chọn 500ml, giá 128.000 ₫" loading="lazy">
+          <figcaption>Đã chọn 500ml, giá 128.000 ₫</figcaption>
+        </figure>
+        <figure class="shot phone">
+          <img src="img/sf-12-added-cart.jpg" alt="Đã thêm: giỏ hàng hiện số 1" loading="lazy">
+          <figcaption>Đã thêm: giỏ hàng hiện số 1</figcaption>
+        </figure></div>
+      </div>
+    </section>
+    <section class="screen" id="kh-thanh-toan">
+      <header class="screen-head">
+        <span class="num">KH·05</span>
+        <h3>Giỏ hàng và đặt hàng</h3>
+        <code class="url">colanh.com/checkout</code>
+      </header>
+      <p class="purpose">Kiểm tra giỏ, nhập địa chỉ nhận hàng, áp mã giảm giá, chọn phương thức thanh toán và đặt hàng.</p>
+      <div class="screen-body phone">
+        <div class="text">
+          <h4>Các bước</h4>
+          <ol class="steps"><li><span>Bấm <b>Giỏ hàng</b> ở thanh dưới. Lần đầu, hệ thống mở hộp <b>Thông tin nhận hàng</b>.</span></li><li><span>Nhập <b>Họ và tên</b>, <b>Số điện thoại</b>, chọn lần lượt <b>Tỉnh/Thành phố → Quận/Huyện → Phường/Xã</b>, nhập <b>Địa chỉ cụ thể</b>.</span></li><li><span>Email là tùy chọn. Nếu bỏ trống, đơn chỉ được xác nhận qua điện thoại.</span></li><li><span>Chọn <b>Loại địa chỉ</b> (Nhà Riêng / Văn Phòng) rồi bấm <b>Hoàn thành</b>. Có thể sửa sau bằng nút <b>Cập nhật</b>.</span></li><li><span>Trong mục <b>Sản phẩm</b>: chỉnh số lượng bằng − / +, bấm <b>Xóa</b> để bỏ sản phẩm.</span></li><li><span>Khối <b>Mua kèm deal sốc</b>: bấm <b>Thêm</b> để mua kèm sản phẩm với giá ưu đãi. Bấm <b>Xem tất cả</b> để xem toàn bộ deal.</span></li><li><span>Nhập <b>Lời nhắn</b> cho shop nếu cần. Nhập <b>Mã giảm giá</b> rồi bấm <b>Áp dụng</b>.</span></li><li><span>Kiểm tra <b>Phí vận chuyển</b> và <b>Tổng số tiền</b>, chọn phương thức thanh toán, bấm <b>ĐẶT HÀNG</b>.</span></li></ol>
+          <div class="note"><h4>Lưu ý</h4><ul><li>Phí vận chuyển 15.000 ₫ cho đơn có tạm tính dưới 199.000 ₫ (tính trước giảm giá). Từ 199.000 ₫ trở lên được miễn phí. Dòng chữ cam nhắc số tiền cần mua thêm.</li><li>Khách không cần đăng nhập vẫn đặt được hàng. Đăng nhập giúp lưu địa chỉ và theo dõi đơn trong tài khoản.</li><li>Hình thức thanh toán: <b>Thanh toán khi nhận hàng (COD)</b>.</li></ul></div>
+        </div>
+        <div class="gallery phone">
+        <figure class="shot phone">
+          <img src="img/sf-13-address-form.jpg" alt="Hộp Thông tin nhận hàng" loading="lazy">
+          <figcaption>Hộp Thông tin nhận hàng</figcaption>
+        </figure>
+        <figure class="shot phone">
+          <img src="img/sf-14-address-form-2.jpg" alt="Loại địa chỉ và nút Hoàn thành" loading="lazy">
+          <figcaption>Loại địa chỉ và nút Hoàn thành</figcaption>
+        </figure>
+        <figure class="shot phone">
+          <img src="img/sf-15-checkout-items.jpg" alt="Sản phẩm và Mua kèm deal sốc" loading="lazy">
+          <figcaption>Sản phẩm và Mua kèm deal sốc</figcaption>
+        </figure>
+        <figure class="shot phone">
+          <img src="img/sf-16-checkout-pay.jpg" alt="Mã giảm giá, phí ship, thanh toán" loading="lazy">
+          <figcaption>Mã giảm giá, phí ship, thanh toán</figcaption>
+        </figure></div>
+      </div>
+    </section>
+    <section class="screen" id="kh-tra-cuu">
+      <header class="screen-head">
+        <span class="num">KH·06</span>
+        <h3>Tra cứu đơn hàng</h3>
+        <code class="url">colanh.com/order-lookup</code>
+      </header>
+      <p class="purpose">Khách (kể cả không có tài khoản) kiểm tra tình trạng đơn đã đặt.</p>
+      <div class="screen-body phone">
+        <div class="text">
+          <h4>Các bước</h4>
+          <ol class="steps"><li><span>Mở menu → <b>Tra cứu đơn</b>, hoặc vào <b>/order-lookup</b>.</span></li><li><span>Chọn cách tra: <b>Mã đơn</b> (8 ký tự, ví dụ #3F9A2C1B, hiện sau khi đặt thành công), <b>Số điện thoại</b> hoặc <b>Email</b> đã dùng khi đặt.</span></li><li><span>Nhập thông tin rồi bấm <b>Tra cứu đơn hàng</b>.</span></li></ol>
+          <div class="note"><h4>Lưu ý</h4><ul><li>Tra theo số điện thoại hiển thị tối đa 10 đơn gần nhất giao tới số đó. Khách đã có tài khoản bấm <b>Xem đơn hàng của tôi</b>.</li></ul></div>
+        </div>
+        <div class="gallery phone">
+        <figure class="shot phone">
+          <img src="img/sf-17-order-lookup.jpg" alt="Tra theo mã đơn" loading="lazy">
+          <figcaption>Tra theo mã đơn</figcaption>
+        </figure>
+        <figure class="shot phone">
+          <img src="img/sf-22-lookup-phone.jpg" alt="Tra theo số điện thoại" loading="lazy">
+          <figcaption>Tra theo số điện thoại</figcaption>
+        </figure></div>
+      </div>
+    </section>
+    <section class="screen" id="kh-tai-khoan">
+      <header class="screen-head">
+        <span class="num">KH·07</span>
+        <h3>Đăng ký, đăng nhập, quên mật khẩu</h3>
+        <code class="url">/register · /login · /forgot-password</code>
+      </header>
+      <p class="purpose">Tạo tài khoản để lưu địa chỉ, xem lịch sử đơn và hủy đơn khi cần.</p>
+      <div class="screen-body phone">
+        <div class="text">
+          <h4>Các bước</h4>
+          <ol class="steps"><li><span><b>Đăng ký</b>: nhập Họ tên, Email, Số điện thoại, Mật khẩu (tối thiểu 8 ký tự, nên có chữ hoa, chữ thường và số), Nhập lại mật khẩu, bấm <b>Đăng ký</b>.</span></li><li><span><b>Đăng nhập</b>: nhập Email và Mật khẩu, bấm <b>Đăng nhập</b>. Tích <b>Lưu đăng nhập 60 ngày</b> trên máy cá nhân. Hoặc bấm <b>Tiếp tục với Google</b>.</span></li><li><span><b>Quên mật khẩu</b>: bấm <b>Quên mật khẩu?</b>, nhập email, bấm <b>Gửi link đặt lại mật khẩu</b>, mở email và làm theo liên kết.</span></li><li><span>Sau khi đăng nhập, bấm <b>Tài khoản</b> ở thanh dưới để vào hồ sơ, sổ địa chỉ và <b>Đơn hàng của tôi</b>.</span></li></ol>
+          <div class="note"><h4>Lưu ý</h4><ul><li>Trong <b>Đơn hàng của tôi</b>, khách tự hủy được đơn khi đơn còn ở trạng thái Chờ thanh toán, Đã thanh toán hoặc Đã xác nhận.</li></ul></div>
+        </div>
+        <div class="gallery phone">
+        <figure class="shot phone">
+          <img src="img/sf-login.jpg" alt="Đăng nhập" loading="lazy">
+          <figcaption>Đăng nhập</figcaption>
+        </figure>
+        <figure class="shot phone">
+          <img src="img/sf-20-register.jpg" alt="Đăng ký tài khoản" loading="lazy">
+          <figcaption>Đăng ký tài khoản</figcaption>
+        </figure>
+        <figure class="shot phone">
+          <img src="img/sf-21-forgot.jpg" alt="Quên mật khẩu" loading="lazy">
+          <figcaption>Quên mật khẩu</figcaption>
+        </figure></div>
+      </div>
+    </section>
+    <section class="screen" id="kh-blog">
+      <header class="screen-head">
+        <span class="num">KH·08</span>
+        <h3>Bài viết (Cẩm nang làm đẹp)</h3>
+        <code class="url">colanh.com/blog</code>
+      </header>
+      <p class="purpose">Đọc bài chia sẻ kiến thức và gợi ý sản phẩm.</p>
+      <div class="screen-body phone">
+        <div class="text">
+          <h4>Các bước</h4>
+          <ol class="steps"><li><span>Mở menu → <b>Bài viết</b>, hoặc vào <b>/blog</b>.</span></li><li><span>Bấm thẻ bài viết để đọc.</span></li><li><span>Trong bài, bấm <b>MỤC LỤC</b> để nhảy tới từng phần. Bấm liên kết sản phẩm trong bài để mua.</span></li></ol>
+          
+        </div>
+        <div class="gallery phone">
+        <figure class="shot phone">
+          <img src="img/sf-18-blog.jpg" alt="Danh sách bài viết" loading="lazy">
+          <figcaption>Danh sách bài viết</figcaption>
+        </figure>
+        <figure class="shot phone">
+          <img src="img/sf-19-blog-detail.jpg" alt="Bài viết có Mục lục" loading="lazy">
+          <figcaption>Bài viết có Mục lục</figcaption>
+        </figure></div>
+      </div>
+    </section>
+    <section class="screen" id="kh-chan-trang">
+      <header class="screen-head">
+        <span class="num">KH·09</span>
+        <h3>Chính sách và liên hệ</h3>
+        <code class="url">Cuối mỗi trang</code>
+      </header>
+      <p class="purpose">Các trang chính sách bắt buộc và thông tin doanh nghiệp.</p>
+      <div class="screen-body phone">
+        <div class="text">
+          <h4>Các bước</h4>
+          <ol class="steps"><li><span>Kéo xuống cuối trang bất kỳ.</span></li><li><span>Mục <b>Quy định &amp; chính sách</b>: bảo mật, vận chuyển – kiểm tra – đổi trả, thanh toán, giá, khiếu nại, hạn chế cung cấp hàng hóa, quyền và nghĩa vụ.</span></li><li><span>Mục <b>Thông tin liên hệ</b>: công ty, địa chỉ, hotline, email, mã số thuế. Biểu tượng TikTok, Facebook, Shopee, Lazada dẫn tới kênh bán khác.</span></li></ol>
+          
+        </div>
+        <div class="gallery phone">
+        <figure class="shot phone">
+          <img src="img/sf-23-footer.jpg" alt="Chân trang" loading="lazy">
+          <figcaption>Chân trang</figcaption>
+        </figure></div>
+      </div>
+    </section>
+    <div class="part-title"><p class="eyebrow">Phần B</p><h2>Trang quản trị (nhân viên)</h2><p>Menu bên trái chia nhóm: Bán hàng, Sản phẩm, Marketing, Nội dung. Trên điện thoại, bấm ☰ để mở menu.</p></div>
+    
+    <section class="screen" id="qt-dang-nhap">
+      <header class="screen-head">
+        <span class="num">QT·01</span>
+        <h3>Đăng nhập trang quản trị</h3>
+        <code class="url">admin.colanh.com</code>
+      </header>
+      <p class="purpose">Chỉ tài khoản nhân viên (admin, editor, supporter) vào được.</p>
+      <div class="screen-body wide">
+        <div class="text">
+          <h4>Các bước</h4>
+          <ol class="steps"><li><span>Mở <b>admin.colanh.com</b>.</span></li><li><span>Nhập <b>Email</b> và <b>Mật khẩu</b> tài khoản nhân viên, bấm <b>Đăng nhập</b>. Bấm biểu tượng con mắt để xem lại mật khẩu vừa gõ.</span></li><li><span>Đăng xuất: bấm biểu tượng ⏻ cạnh tên tài khoản ở góc trái dưới.</span></li></ol>
+          <div class="note"><h4>Lưu ý</h4><ul><li>Phân quyền: <b>admin</b> toàn quyền; <b>editor</b> quản lý sản phẩm và bài viết; <b>supporter</b> tra cứu khách hàng và đơn hàng.</li></ul></div>
+        </div>
+        <div class="gallery wide">
+        <figure class="shot wide">
+          <img src="img/ad-01-login.jpg" alt="Màn hình đăng nhập" loading="lazy">
+          <figcaption>Màn hình đăng nhập</figcaption>
+        </figure></div>
+      </div>
+    </section>
+    <section class="screen" id="qt-dashboard">
+      <header class="screen-head">
+        <span class="num">QT·02</span>
+        <h3>Dashboard (Tổng quan)</h3>
+        <code class="url">/</code>
+      </header>
+      <p class="purpose">Nắm nhanh doanh thu, số đơn, khách hàng, tỷ lệ hủy và đơn mới.</p>
+      <div class="screen-body wide">
+        <div class="text">
+          <h4>Các bước</h4>
+          <ol class="steps"><li><span>Bốn thẻ đầu trang: <b>Doanh thu</b>, <b>Đơn hàng</b>, <b>Khách hàng</b>, <b>Tỷ lệ hủy</b>, kèm % thay đổi so với tháng trước.</span></li><li><span>Biểu đồ <b>Doanh thu theo ngày / tháng</b>: chọn khoảng ngày, chuyển <b>Theo ngày</b> / <b>Theo tháng</b>, bấm <b>Đặt lại</b> để về mặc định.</span></li><li><span>Bảng <b>Đơn hàng gần đây</b>: bấm mã đơn hoặc biểu tượng con mắt để mở chi tiết; <b>Xem tất cả</b> để sang trang Đơn hàng.</span></li><li><span><b>Xem cửa hàng</b> (góc phải trên) mở storefront ở tab mới.</span></li></ol>
+          
+        </div>
+        <div class="gallery wide">
+        <figure class="shot wide">
+          <img src="img/ad-02-dashboard.jpg" alt="Chỉ số và biểu đồ doanh thu" loading="lazy">
+          <figcaption>Chỉ số và biểu đồ doanh thu</figcaption>
+        </figure>
+        <figure class="shot wide">
+          <img src="img/ad-03-dashboard-orders.jpg" alt="Đơn hàng gần đây" loading="lazy">
+          <figcaption>Đơn hàng gần đây</figcaption>
+        </figure></div>
+      </div>
+    </section>
+    <section class="screen" id="qt-don-hang">
+      <header class="screen-head">
+        <span class="num">QT·03</span>
+        <h3>Đơn hàng</h3>
+        <code class="url">/orders</code>
+      </header>
+      <p class="purpose">Duyệt, theo dõi và cập nhật trạng thái mọi đơn; in hóa đơn.</p>
+      <div class="screen-body wide">
+        <div class="text">
+          <h4>Các bước</h4>
+          <ol class="steps"><li><span>Vào <b>Bán hàng → Đơn hàng</b>.</span></li><li><span>Tìm theo mã đơn, tên hoặc email. Lọc theo <b>Trạng thái</b> và <b>Loại khách</b> (thành viên / khách vãng lai). <b>Lọc nâng cao</b> mở thêm bộ lọc. Ô bên phải đổi cách sắp xếp (Ngày đặt…).</span></li><li><span>Bấm biểu tượng con mắt để mở chi tiết đơn.</span></li><li><span>Trong chi tiết: thanh tiến trình cho biết đơn đang ở bước nào. Kiểm tra <b>Chi tiết sản phẩm</b>, <b>Thanh toán</b> (tạm tính, giảm giá, phí vận chuyển, tổng), <b>Khách hàng</b> và <b>Giao hàng</b>.</span></li><li><span>Đổi trạng thái ở ô <b>Trạng thái</b> bên phải. Thứ tự thường dùng: Chờ thanh toán → Đã thanh toán → Đã xác nhận → Đang giao hàng → Đã giao hàng. Chọn <b>Đã hủy</b> nếu hủy đơn (tồn kho được hoàn lại).</span></li><li><span>Bấm <b>Xuất hóa đơn</b> để xem trước hóa đơn, rồi bấm <b>In / Lưu PDF</b>.</span></li></ol>
+          <div class="note"><h4>Lưu ý</h4><ul><li>Mỗi đơn mới đều gửi thông báo về email của chủ shop.</li></ul></div>
+        </div>
+        <div class="gallery wide">
+        <figure class="shot wide">
+          <img src="img/ad-04-orders.jpg" alt="Danh sách đơn hàng" loading="lazy">
+          <figcaption>Danh sách đơn hàng</figcaption>
+        </figure>
+        <figure class="shot wide">
+          <img src="img/ad-05-order-detail.jpg" alt="Chi tiết đơn và tiến trình" loading="lazy">
+          <figcaption>Chi tiết đơn và tiến trình</figcaption>
+        </figure>
+        <figure class="shot wide">
+          <img src="img/ad-06-order-detail-2.jpg" alt="Thanh toán, khách hàng, giao hàng" loading="lazy">
+          <figcaption>Thanh toán, khách hàng, giao hàng</figcaption>
+        </figure>
+        <figure class="shot wide">
+          <img src="img/ad-07-order-status.jpg" alt="Các trạng thái đơn" loading="lazy">
+          <figcaption>Các trạng thái đơn</figcaption>
+        </figure></div>
+      </div>
+    </section>
+    <section class="screen" id="qt-khach-hang">
+      <header class="screen-head">
+        <span class="num">QT·04</span>
+        <h3>Khách hàng</h3>
+        <code class="url">/customers</code>
+      </header>
+      <p class="purpose">Tra cứu khách để chăm sóc, xem số đơn và tổng chi tiêu.</p>
+      <div class="screen-body wide">
+        <div class="text">
+          <h4>Các bước</h4>
+          <ol class="steps"><li><span>Vào <b>Bán hàng → Khách hàng</b>.</span></li><li><span>Gõ tên, email hoặc SĐT vào ô tìm kiếm.</span></li><li><span>Bấm tiêu đề cột để sắp xếp (Số đơn, Tổng chi tiêu, Đơn gần nhất).</span></li></ol>
+          <div class="note"><h4>Lưu ý</h4><ul><li>Trang này chỉ để xem; không sửa thông tin khách tại đây. Ảnh minh họa đã làm mờ dữ liệu cá nhân.</li></ul></div>
+        </div>
+        <div class="gallery wide">
+        <figure class="shot wide">
+          <img src="img/ad-08-customers.jpg" alt="Danh sách khách hàng" loading="lazy">
+          <figcaption>Danh sách khách hàng</figcaption>
+        </figure></div>
+      </div>
+    </section>
+    <section class="screen" id="qt-san-pham">
+      <header class="screen-head">
+        <span class="num">QT·05</span>
+        <h3>Sản phẩm</h3>
+        <code class="url">/products</code>
+      </header>
+      <p class="purpose">Thêm, sửa, ẩn/hiện sản phẩm, quản lý giá, tồn kho, ảnh và phân loại.</p>
+      <div class="screen-body wide">
+        <div class="text">
+          <h4>Các bước</h4>
+          <ol class="steps"><li><span>Vào <b>Sản phẩm → Sản phẩm</b>. Tìm theo tên/slug, lọc theo <b>Danh mục</b>.</span></li><li><span>Gạt công tắc <b>Hiển thị</b> để ẩn/hiện sản phẩm trên web mà không xóa dữ liệu. Có thể sửa nhanh tồn kho ngay trên bảng.</span></li><li><span>Bấm <b>+ Thêm sản phẩm</b> để tạo mới, hoặc biểu tượng bút để sửa.</span></li><li><span>Mục <b>Thông tin</b>: Tên sản phẩm (bắt buộc), Danh mục, SKU, Mô tả ngắn, Mô tả chi tiết (soạn thảo có định dạng, chèn ảnh, liên kết).</span></li><li><span>Mục <b>Giá &amp; kho</b>: Giá bán (bắt buộc), Giá gốc (để hiện giảm giá, phải lớn hơn giá bán), Tồn kho. Mục <b>Hiển thị</b>: bật Hiển thị; bật <b>Nổi bật</b> để đưa lên khối Sản phẩm nổi bật ở trang chủ.</span></li><li><span>Mục <b>Hình ảnh sản phẩm</b>: bấm <b>Tải ảnh</b> (JPG, PNG, WEBP, tối đa 20MB) hoặc dán URL rồi <b>Thêm URL</b>. Chọn <b>Ảnh chính</b> cho ảnh đại diện, nhập mô tả ảnh (alt) cho SEO, bấm thùng rác để xóa ảnh.</span></li><li><span>Mục <b>Phân loại sản phẩm</b>: bấm <b>+ Thêm phân loại</b>. Mỗi phân loại có Tên (bắt buộc), SKU, Giá (để trống = dùng giá chung), Giá gốc, Tồn kho, Ảnh phân loại, công tắc Hiển thị.</span></li><li><span>Bấm <b>Lưu</b> ở cuối trang. Bấm <b>Hủy</b> để bỏ thay đổi.</span></li></ol>
+          
+        </div>
+        <div class="gallery wide">
+        <figure class="shot wide">
+          <img src="img/ad-09-products.jpg" alt="Danh sách sản phẩm" loading="lazy">
+          <figcaption>Danh sách sản phẩm</figcaption>
+        </figure>
+        <figure class="shot wide">
+          <img src="img/ad-10-product-form.jpg" alt="Thông tin, giá, hiển thị" loading="lazy">
+          <figcaption>Thông tin, giá, hiển thị</figcaption>
+        </figure>
+        <figure class="shot wide">
+          <img src="img/ad-11-product-images.jpg" alt="Hình ảnh sản phẩm" loading="lazy">
+          <figcaption>Hình ảnh sản phẩm</figcaption>
+        </figure>
+        <figure class="shot wide">
+          <img src="img/ad-12-product-variants.jpg" alt="Phân loại sản phẩm" loading="lazy">
+          <figcaption>Phân loại sản phẩm</figcaption>
+        </figure>
+        <figure class="shot wide">
+          <img src="img/ad-13-product-save.jpg" alt="Phân loại thứ hai và nút Lưu" loading="lazy">
+          <figcaption>Phân loại thứ hai và nút Lưu</figcaption>
+        </figure></div>
+      </div>
+    </section>
+    <section class="screen" id="qt-danh-muc">
+      <header class="screen-head">
+        <span class="num">QT·06</span>
+        <h3>Danh mục</h3>
+        <code class="url">/categories</code>
+      </header>
+      <p class="purpose">Quản lý cây danh mục 2 cấp (cha – con).</p>
+      <div class="screen-body wide">
+        <div class="text">
+          <h4>Các bước</h4>
+          <ol class="steps"><li><span>Vào <b>Sản phẩm → Danh mục</b>. Các thẻ đầu trang cho biết tổng danh mục, danh mục cha, số sản phẩm đã gán và số danh mục chưa có sản phẩm.</span></li><li><span>Bấm <b>+ Thêm danh mục</b> để tạo danh mục cha.</span></li><li><span>Trên mỗi dòng: <b>bút</b> = sửa, <b>+</b> = thêm danh mục con, <b>thùng rác</b> = xóa.</span></li><li><span>Kéo biểu tượng ⋮⋮ ở đầu dòng để đổi thứ tự hiển thị. Bấm ⊟ để thu gọn nhánh.</span></li></ol>
+          <div class="note"><h4>Lưu ý</h4><ul><li>Tối đa 2 cấp. Nên chuyển hết sản phẩm sang danh mục khác trước khi xóa.</li></ul></div>
+        </div>
+        <div class="gallery wide">
+        <figure class="shot wide">
+          <img src="img/ad-14-categories.jpg" alt="Cây danh mục" loading="lazy">
+          <figcaption>Cây danh mục</figcaption>
+        </figure></div>
+      </div>
+    </section>
+    <section class="screen" id="qt-khuyen-mai">
+      <header class="screen-head">
+        <span class="num">QT·07</span>
+        <h3>Khuyến mãi (mã giảm giá và sale)</h3>
+        <code class="url">/coupons</code>
+      </header>
+      <p class="purpose">Tạo mã giảm giá cho khách nhập, hoặc sale tự động áp vào sản phẩm/danh mục.</p>
+      <div class="screen-body wide">
+        <div class="text">
+          <h4>Các bước</h4>
+          <ol class="steps"><li><span>Vào <b>Marketing → Khuyến mãi</b>, tab <b>Quản lý khuyến mãi</b>. Bấm <b>+ Thêm mã</b>.</span></li><li><span>Điền <b>Mã giảm giá</b>, <b>Loại giảm</b> (Phần trăm % hoặc Số tiền VND), <b>Giá trị</b>.</span></li><li><span>Tùy chọn: <b>Đơn tối thiểu</b>, <b>Giảm tối đa</b> (trần cho mã %), <b>Giới hạn lượt</b> dùng.</span></li><li><span><b>Tự động áp sale</b>: bật để giảm thẳng vào giá, khách không cần nhập mã. Tắt nếu muốn khách phải nhập mã ở bước thanh toán.</span></li><li><span><b>Áp dụng cho</b>: Toàn bộ cửa hàng, Một số danh mục, hoặc Một số sản phẩm. Bật <b>Kích hoạt</b>, bấm <b>Đồng ý</b>.</span></li><li><span>Tab <b>Gán sale sản phẩm/danh mục</b>: chọn một hoặc nhiều mã, chọn <b>Loại target</b> (Theo sản phẩm / Theo danh mục), chọn đối tượng rồi bấm <b>Gán sale hàng loạt</b>. Bật “Giữ nguyên…” để chỉ thêm mục mới, không thay danh sách cũ.</span></li></ol>
+          
+        </div>
+        <div class="gallery wide">
+        <figure class="shot wide">
+          <img src="img/ad-15-coupons.jpg" alt="Danh sách mã" loading="lazy">
+          <figcaption>Danh sách mã</figcaption>
+        </figure>
+        <figure class="shot wide">
+          <img src="img/ad-16-coupon-form.jpg" alt="Form Thêm mã" loading="lazy">
+          <figcaption>Form Thêm mã</figcaption>
+        </figure>
+        <figure class="shot wide">
+          <img src="img/ad-17-coupon-form-2.jpg" alt="Tự động áp sale, phạm vi, kích hoạt" loading="lazy">
+          <figcaption>Tự động áp sale, phạm vi, kích hoạt</figcaption>
+        </figure>
+        <figure class="shot wide">
+          <img src="img/ad-18-assign-sale.jpg" alt="Gán sale hàng loạt" loading="lazy">
+          <figcaption>Gán sale hàng loạt</figcaption>
+        </figure></div>
+      </div>
+    </section>
+    <section class="screen" id="qt-deal">
+      <header class="screen-head">
+        <span class="num">QT·08</span>
+        <h3>Mua kèm deal sốc</h3>
+        <code class="url">/addon-deals</code>
+      </header>
+      <p class="purpose">Ưu đãi hiện ở trang thanh toán khi giỏ hàng thỏa điều kiện, giúp tăng giá trị đơn.</p>
+      <div class="screen-body wide">
+        <div class="text">
+          <h4>Các bước</h4>
+          <ol class="steps"><li><span>Vào <b>Marketing → Mua kèm deal sốc</b>. Bấm <b>+ Tạo deal</b> hoặc bút để sửa. Gạt <b>Bật</b> để bật/tắt nhanh.</span></li><li><span>Mục <b>Thông tin</b>: Tên deal (bắt buộc), Bắt đầu / Kết thúc (tùy chọn), công tắc Đang bật.</span></li><li><span>Mục <b>Điều kiện hiển thị deal</b>: chọn <b>Áp dụng khi giỏ có</b> (mọi đơn hàng hoặc sản phẩm/danh mục cụ thể) và <b>Giá trị đơn tối thiểu</b>.</span></li><li><span>Mục <b>Món mua kèm (ưu đãi)</b>: bấm <b>Thêm sản phẩm</b> hoặc <b>Thêm danh mục</b>. Với mỗi món chọn Kiểu ưu đãi, Giá trị, Giảm tối đa, SL tối đa/SP. Cột <b>Sau ưu đãi</b> hiện giá khách sẽ trả. Dùng mũi tên để đổi thứ tự.</span></li><li><span>Tùy chọn <b>Tổng số món mua kèm tối đa/đơn</b>. Bấm Lưu.</span></li></ol>
+          <div class="note"><h4>Lưu ý</h4><ul><li>Khi deal áp cho mọi đơn, nên đặt giá trị đơn tối thiểu hoặc giới hạn số món để tránh bán lỗ (hệ thống có cảnh báo vàng).</li></ul></div>
+        </div>
+        <div class="gallery wide">
+        <figure class="shot wide">
+          <img src="img/ad-19-deals.jpg" alt="Danh sách deal" loading="lazy">
+          <figcaption>Danh sách deal</figcaption>
+        </figure>
+        <figure class="shot wide">
+          <img src="img/ad-20-deal-form.jpg" alt="Thông tin và điều kiện" loading="lazy">
+          <figcaption>Thông tin và điều kiện</figcaption>
+        </figure>
+        <figure class="shot wide">
+          <img src="img/ad-21-deal-items.jpg" alt="Món mua kèm" loading="lazy">
+          <figcaption>Món mua kèm</figcaption>
+        </figure></div>
+      </div>
+    </section>
+    <section class="screen" id="qt-bo-suu-tap">
+      <header class="screen-head">
+        <span class="num">QT·09</span>
+        <h3>Bộ sưu tập (Combo nổi bật)</h3>
+        <code class="url">/collections</code>
+      </header>
+      <p class="purpose">Điều khiển khối 3 ô ngay dưới banner trang chủ.</p>
+      <div class="screen-body wide">
+        <div class="text">
+          <h4>Các bước</h4>
+          <ol class="steps"><li><span>Vào <b>Marketing → Bộ sưu tập</b>. Bấm <b>+ Thêm collection</b> hoặc bút để sửa.</span></li><li><span>Nhập <b>Tên</b>. <b>Slug</b> để trống sẽ tự sinh từ tên.</span></li><li><span>Trong <b>Ô hiển thị</b> (tối đa 3): chọn <b>Loại</b> (Sản phẩm hoặc Danh mục), chọn đối tượng, tùy chọn tải <b>Ảnh thay thế</b>. Mũi tên lên/xuống để đổi vị trí ô.</span></li><li><span>Đặt <b>Thứ tự</b> và bật <b>Kích hoạt</b> để hiện trên trang chủ.</span></li></ol>
+          
+        </div>
+        <div class="gallery wide">
+        <figure class="shot wide">
+          <img src="img/ad-22-collections.jpg" alt="Danh sách bộ sưu tập" loading="lazy">
+          <figcaption>Danh sách bộ sưu tập</figcaption>
+        </figure>
+        <figure class="shot wide">
+          <img src="img/ad-23-collection-form.jpg" alt="Sửa ô hiển thị" loading="lazy">
+          <figcaption>Sửa ô hiển thị</figcaption>
+        </figure></div>
+      </div>
+    </section>
+    <section class="screen" id="qt-banner">
+      <header class="screen-head">
+        <span class="num">QT·10</span>
+        <h3>Banner</h3>
+        <code class="url">/banners</code>
+      </header>
+      <p class="purpose">Banner trượt đầu trang chủ và banner uy tín (giới thiệu thương hiệu).</p>
+      <div class="screen-body wide">
+        <div class="text">
+          <h4>Các bước</h4>
+          <ol class="steps"><li><span>Vào <b>Marketing → Banner</b>. Tab <b>Banner trang chủ</b> hoặc <b>Banner uy tín</b>.</span></li><li><span>Bấm <b>+ Thêm banner</b> hoặc bút để sửa.</span></li><li><span>Nhập <b>Tiêu đề</b>, bấm <b>Tải ảnh</b> (JPG, PNG, WEBP, tối đa 20MB).</span></li><li><span><b>Sản phẩm gắn với banner</b> là bắt buộc: bấm <b>Đổi sản phẩm</b> để chọn sản phẩm mà banner dẫn tới.</span></li><li><span>Đặt <b>Thứ tự</b> (số nhỏ hiện trước), bật <b>Hiển thị</b>, bấm Lưu. Gạt <b>Kích hoạt</b> trên bảng để tạm gỡ banner.</span></li></ol>
+          
+        </div>
+        <div class="gallery wide">
+        <figure class="shot wide">
+          <img src="img/ad-24-banners.jpg" alt="Banner trang chủ" loading="lazy">
+          <figcaption>Banner trang chủ</figcaption>
+        </figure>
+        <figure class="shot wide">
+          <img src="img/ad-25-banner-form.jpg" alt="Sửa banner" loading="lazy">
+          <figcaption>Sửa banner</figcaption>
+        </figure>
+        <figure class="shot wide">
+          <img src="img/ad-26-trust-banner.jpg" alt="Banner uy tín" loading="lazy">
+          <figcaption>Banner uy tín</figcaption>
+        </figure></div>
+      </div>
+    </section>
+    <section class="screen" id="qt-bai-viet">
+      <header class="screen-head">
+        <span class="num">QT·11</span>
+        <h3>Bài viết và SEO</h3>
+        <code class="url">/posts</code>
+      </header>
+      <p class="purpose">Viết, đăng bài cẩm nang và tối ưu SEO; sửa trang Về Cỏ Lành.</p>
+      <div class="screen-body wide">
+        <div class="text">
+          <h4>Các bước</h4>
+          <ol class="steps"><li><span>Vào <b>Nội dung → Bài viết</b>. Tab <b>Danh sách bài viết</b> hoặc <b>Về Cỏ Lành</b>.</span></li><li><span>Bấm <b>+ Thêm bài viết</b> hoặc bút để sửa.</span></li><li><span>Nhập <b>Tiêu đề</b>, <b>Tóm tắt</b>, tải <b>Ảnh bìa</b>, soạn <b>Nội dung</b> (tiêu đề H2/H3 sẽ tạo Mục lục tự động).</span></li><li><span>Chọn <b>Bài viết liên quan</b> để gợi ý cuối bài.</span></li><li><span>Khung <b>Tối ưu SEO</b>: nhập <b>Từ khóa chính</b>. Xem điểm <b>SEO</b> và <b>Khả năng đọc</b>, mở <b>Phân tích SEO</b> để xem các vấn đề cần sửa. Bấm <b>Xem trước Google</b> / <b>Xem trước mạng xã hội</b> để kiểm tra cách hiển thị.</span></li><li><span>Chọn <b>Trạng thái</b>: <b>Nháp</b> (chưa hiện trên web), <b>Đăng</b> (hiện ngay), <b>Lưu trữ</b> (gỡ khỏi web, giữ dữ liệu). Bấm <b>Lưu</b>.</span></li></ol>
+          <div class="note"><h4>Lưu ý</h4><ul><li>Nên xử lý các mục đỏ trong Phân tích SEO trước khi đăng. Phần phân tích chỉ chạy trong trình duyệt, không gửi dữ liệu ra ngoài.</li></ul></div>
+        </div>
+        <div class="gallery wide">
+        <figure class="shot wide">
+          <img src="img/ad-27-posts.jpg" alt="Danh sách bài viết" loading="lazy">
+          <figcaption>Danh sách bài viết</figcaption>
+        </figure>
+        <figure class="shot wide">
+          <img src="img/ad-28-post-form.jpg" alt="Soạn bài và khung SEO" loading="lazy">
+          <figcaption>Soạn bài và khung SEO</figcaption>
+        </figure>
+        <figure class="shot wide">
+          <img src="img/ad-29-post-seo.jpg" alt="Phân tích SEO chi tiết" loading="lazy">
+          <figcaption>Phân tích SEO chi tiết</figcaption>
+        </figure></div>
+      </div>
+    </section>
+    <section class="appendix" id="phu-luc">
+      <div class="part-title"><p class="eyebrow">Phụ lục</p><h2>Quy tắc cần nhớ</h2></div>
+      <h4>Trạng thái đơn hàng</h4>
+      <div class="tbl"><table><thead><tr><th>Trạng thái</th><th>Ý nghĩa</th><th>Khách tự hủy</th></tr></thead><tbody>
+        <tr><td><span class="pill">Chờ thanh toán</span></td><td>Đơn vừa tạo, khách sẽ thanh toán khi nhận hàng (COD)</td><td>Được</td></tr><tr><td><span class="pill">Đã thanh toán</span></td><td>Shop đã ghi nhận tiền của đơn</td><td>Được</td></tr><tr><td><span class="pill">Đã xác nhận</span></td><td>Shop đã gọi/kiểm tra và chuẩn bị hàng</td><td>Được</td></tr><tr><td><span class="pill">Đang giao hàng</span></td><td>Đã giao cho đơn vị vận chuyển</td><td>Không</td></tr><tr><td><span class="pill">Đã giao hàng</span></td><td>Khách đã nhận hàng</td><td>Không</td></tr><tr><td><span class="pill">Đã hủy</span></td><td>Đơn bị hủy, tồn kho được hoàn lại</td><td>—</td></tr>
+      </tbody></table></div>
+      <h4>Phí vận chuyển và giá</h4>
+      <div class="tbl"><table><tbody>
+        <tr><td>Tạm tính dưới 199.000 ₫</td><td>Phí vận chuyển 15.000 ₫ (đồng giá toàn quốc)</td></tr>
+        <tr><td>Tạm tính từ 199.000 ₫</td><td>Miễn phí vận chuyển</td></tr>
+        <tr><td>Cách tính ngưỡng</td><td>Theo tổng tiền hàng trước khi trừ mã giảm giá</td></tr>
+        <tr><td>Giá gốc / giá bán</td><td>Giá gốc phải lớn hơn giá bán thì mới hiện nhãn SALE -%</td></tr>
+        <tr><td>Ảnh tải lên</td><td>JPG, PNG, WEBP, tối đa 20MB mỗi ảnh</td></tr>
+      </tbody></table></div>
+    </section>
+  </main>
+</div>
+</body>
+</html>
